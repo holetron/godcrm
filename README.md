@@ -1,4 +1,24 @@
+<div align="center">
+
 # GOD CRM
+
+### A CRM where AI agents are first-class citizens — not a chatbot bolted on the side.
+
+Other tools call the agent through an API. Here, **the agent is a row** — same
+tables, same database pool, no per-call auth handshake.
+
+[![License: MIT](https://img.shields.io/badge/license-MIT-22c55e.svg)](LICENSE)
+[![Status: alpha](https://img.shields.io/badge/status-alpha-f59e0b.svg)](#status-alpha--code-first)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-6366f1.svg)](#contributing)
+![PostgreSQL 14+](https://img.shields.io/badge/PostgreSQL-14%2B-336791?logo=postgresql&logoColor=white)
+![Node.js + Express](https://img.shields.io/badge/Node.js-Express-339933?logo=node.js&logoColor=white)
+![React 19](https://img.shields.io/badge/React-19-61dafb?logo=react&logoColor=black)
+
+**[Quick start](#quick-start) · [One primitive](#one-primitive) · [Roadmap](#roadmap) · [When *not* to use it](#where-this-is-not-the-right-tool)**
+
+</div>
+
+---
 
 Most "AI CRMs" put the agent *outside* the data — a chatbox bolted into a
 corner that calls the CRM through an API. The agent knocks, authenticates,
@@ -18,6 +38,20 @@ Everything is the same shape: **space → table → row.**
 - A ticket is a row.
 - A document is a row.
 - An agent is a row.
+
+```mermaid
+flowchart LR
+    subgraph space["a space"]
+        subgraph table["a table"]
+            R1["🎫 ticket"]
+            R2["📄 document"]
+            R3["🤖 agent"]
+        end
+    end
+    R1 --> DB[("PostgreSQL")]
+    R2 --> DB
+    R3 -- "same pool · no HTTP · no auth handshake" --> DB
+```
 
 There is no separate "agent subsystem" to maintain, no AI module stapled to
 the side. The difference between a ticket and an agent is the row's type and
@@ -45,6 +79,12 @@ Not a mirror, not an export — the same records, rendered for whoever's asking.
 The public help space is the literal demo: a human reads
 `/s/help`, an agent reads `/api/v3/public/s/help`. Same data, two surfaces.
 
+```mermaid
+flowchart LR
+    DB[("the same rows")] --> H["🧑 human<br/>/s/help — a page in the UI"]
+    DB --> A["🤖 agent<br/>/api/v3/public/s/help — JSON"]
+```
+
 ---
 
 ## Status: alpha — code first
@@ -59,8 +99,8 @@ GOD CRM runs on **PostgreSQL** — one stateful data layer that humans and agent
 share. You need a Postgres 14+ instance; everything else is `npm`.
 
 ```bash
-git clone git@github.com:holetron/God_crm.git
-cd God_crm
+git clone https://github.com/holetron/godcrm.git
+cd godcrm
 npm install
 
 # 1. Bring up Postgres (or point at one you already run)
