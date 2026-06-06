@@ -1,0 +1,158 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build
+dist/
+build/
+.next/
+*.tsbuildinfo
+
+# Electron desktop (ADR-0023)
+dist-electron/
+release/
+
+# Environment (ADR-064: secrets cleanup)
+.env
+.env.prod
+.env.local
+.env.*.local
+.env.bak*
+backend/.env
+backend/.env.prod
+backend/smtp-config.json
+backend/google-oauth-config.json
+google-oauth-config.json
+backend/google-calendar-config.json
+google-calendar-config.json
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+data/*.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# IDE
+.idea/
+*.swp
+*.swo
+.vscode/settings.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test
+test-results/
+playwright-report/
+coverage/
+
+# Temp & Backup files (ADR-041)
+*.tmp
+*.bak
+*.old
+*.new
+*.original
+*.backup
+backups/
+temp/
+
+# Credentials
+**/credentials*.json
+**/secrets*.json
+**/*-config.json
+!**/config.example.json
+backend/config/keys/*.pem
+
+# Flutter / GOD Frame
+god_frame/build/
+god_frame/.dart_tool/
+god_frame/.packages
+god_frame/.flutter-plugins
+god_frame/.flutter-plugins-dependencies
+god_frame/pubspec.lock
+god_frame/.idea/
+god_frame/*.iml
+god_frame/android/.gradle/
+god_frame/releases/
+
+# Binary builds (APK, IPA, etc.)
+*.apk
+*.ipa
+*.aab
+
+# Public downloads & uploads
+public/downloads/
+public/uploads/
+backend/public/downloads/
+backend/public/uploads/
+uploads/
+
+# Google Calendar tokens (secrets)
+backend/google-calendar-tokens.json
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Data directory (runtime data, not code)
+data/
+# But Flutter Dart data layer IS code — keep tracked
+!god_frame/lib/**/data/
+!god_frame/lib/**/data/**
+
+# Generated snapshots (adr-garbage CSV dumps, doc-status backfills)
+# Tracked cleanup-* directories remain tracked; only new untracked garbage ignored
+scripts/snapshots/adr-garbage-*
+scripts/snapshots/doc-statuses-per-project-*/
+
+# Documentation — lives in CRM Documents (devcrm.hltrn.cc/widgets/124)
+# Agent prompts live in ai_agents table (table 1784)
+# Only README.md stays in git
+docs/
+.gitnexus
+scripts/snapshots/
+
+# Claude Code agent worktrees (parallel-agent isolation; never committed)
+.claude/worktrees/
+
+# One-off landing/screenshot tools (root-level shot_*.mjs playwright scripts)
+/shot_*.mjs
+
+# Local backups (never published)
+.backups/
+
+# Personal side-projects — kept on disk, excluded from public repo (godcrm)
+# Палевность Checker (ADR-140) + Вспомнил! — decoupled from router/server, run locally only
+backend/routes/v3/tools/palevo-checker.js
+backend/routes/v3/tools/vspomnil.js
+src/features/public/PalevoChecker.tsx
+src/features/public/VspomilLanding.tsx
+# Holetron umbrella landing (hltrn.cc) — removed from product, kept on disk
+src/pages/landing/HoletronLanding.tsx
+
+# Table-import wizard — WIP, ships as a "coming soon" stub (ImportTableWizard.tsx stays tracked).
+# Real implementation kept on disk but excluded from the repo until the feature lands.
+src/features/import-wizard/components/ImportTableWizard.impl.tsx
+src/features/import-wizard/components/steps/
+src/features/import-wizard/hooks/
+src/features/import-wizard/types/
+src/features/import-wizard/__tests__/
+
+# Secrets & infra leaks — kept on disk, NEVER published (release cleanup 2026-06-06)
+# WireGuard/Amnezia private keys
+scripts/opi-setup/awg-keys/*.key
+# Dev credentials dump (passwords/tokens/hosts)
+DEV-CREDENTIALS.md
+# Prod-DB redact/dump snapshots (data + IPs)
+.cleanup-snapshots/
+# Personal / Holetron-internal scripts
+HOLETRON_STATE.md
+scripts/clone-dev-to-holetron.mjs
+scripts/import-uchet-to-crm.py
+scripts/migrate-notion-2026-05-11.py

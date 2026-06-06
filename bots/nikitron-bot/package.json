@@ -1,0 +1,17 @@
+{
+  "name": "nikitron-bot",
+  "version": "2.0.0",
+  "description": "Telegram-бот с интеграцией GOD CRM — чат с агентами, спринты, здоровье",
+  "type": "module",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "dev": "node --watch bot.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "author": "NIKITRON",
+  "license": "MIT"
+}

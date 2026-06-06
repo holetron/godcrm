@@ -1,0 +1,1 @@
+const e="Business CRM";function i(t){t?document.title=`${t} - ${e}`:document.title=e}function n(t,s){s?document.title=`${t} - ${s} - ${e}`:document.title=`${t} - ${e}`}function c(t,s){document.title=`${t} - ${e}`}function o(t){document.title=`${t} - ${e}`}export{c as a,i as b,n as c,o as s};
