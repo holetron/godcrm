@@ -156,3 +156,6 @@ HOLETRON_STATE.md
 scripts/clone-dev-to-holetron.mjs
 scripts/import-uchet-to-crm.py
 scripts/migrate-notion-2026-05-11.py
+
+# personal consent letters / docx — never publish
+*.docx
