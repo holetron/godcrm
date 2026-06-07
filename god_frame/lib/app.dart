@@ -7,6 +7,7 @@ import 'core/theme.dart';
 import 'features/auth/providers/auth_provider.dart';
 import 'features/settings/providers/app_lock_provider.dart';
 import 'features/settings/ui/lock_screen.dart';
+import 'shared/widgets/splash_screen.dart';
 
 class GodFrameApp extends ConsumerStatefulWidget {
   const GodFrameApp({super.key});
@@ -87,6 +88,7 @@ class _GodFrameAppState extends ConsumerState<GodFrameApp> with WidgetsBindingOb
   Widget build(BuildContext context) {
     final router = ref.watch(routerProvider);
     final lockState = ref.watch(appLockProvider);
+    final authState = ref.watch(authStateProvider);
 
     return MaterialApp.router(
       title: 'GOD',
@@ -97,6 +99,12 @@ class _GodFrameAppState extends ConsumerState<GodFrameApp> with WidgetsBindingOb
         // Show lock screen overlay when app is locked
         if (lockState.isLocked) {
           return const LockScreen();
+        }
+        // Animated splash while the initial auth/session check is in flight
+        // (authStateProvider starts as AsyncValue.loading()). Replaces the
+        // bare frame that used to show during bootstrap.
+        if (authState.isLoading) {
+          return const SplashScreen();
         }
         return child ?? const SizedBox.shrink();
       },
